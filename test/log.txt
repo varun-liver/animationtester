@@ -1,0 +1,8 @@
+Loaded animation "wave" (length=2.00s, loop=false, bones=7):
+  body         rotation keys=3  position keys=0
+  camera       rotation keys=2  position keys=2
+  head         rotation keys=3  position keys=0
+  left_arm     rotation keys=3  position keys=0
+  left_leg     rotation keys=3  position keys=0
+  right_arm    rotation keys=3  position keys=0
+  right_leg    rotation keys=3  position keys=0
