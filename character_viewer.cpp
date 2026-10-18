@@ -855,8 +855,20 @@ private:
                     addRecentFile(picked);
                 }
             }
-            if (ImGui::MenuItem("Save", nullptr, false, !loadedFilePath_.empty())) {
-                saveAnimation(loadedFilePath_, clip_);
+            if (ImGui::MenuItem("Save")) {
+                if (loadedFilePath_.empty()) {
+                    // No file yet (e.g. straight after "New") - behave like
+                    // Save As instead of silently doing nothing.
+                    std::string picked = saveJsonFileDialog(window_, kAnimationDir, loadedFileName_.c_str());
+                    if (!picked.empty()) {
+                        saveAnimation(picked, clip_);
+                        loadedFilePath_ = picked;
+                        loadedFileName_ = std::filesystem::path(picked).filename().string();
+                        addRecentFile(picked);
+                    }
+                } else {
+                    saveAnimation(loadedFilePath_, clip_);
+                }
             }
             if (ImGui::MenuItem("Save As...")) {
                 std::string picked = saveJsonFileDialog(window_, kAnimationDir, loadedFileName_.c_str());
